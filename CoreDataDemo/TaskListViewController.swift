@@ -151,7 +151,6 @@ extension TaskListViewController {
         tableView.reloadRows(at: [cellIndex], with: .automatic)
         
         saveIfContextIsChanged()
-        print(index)
     }
 }
 

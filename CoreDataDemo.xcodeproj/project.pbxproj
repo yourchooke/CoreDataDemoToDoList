@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270AE0A328F709D600AE368F /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270AE0A228F709D600AE368F /* TaskTableViewCell.swift */; };
 		A8969B1B270B6C6D00F7DED0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8969B1A270B6C6D00F7DED0 /* AppDelegate.swift */; };
 		A8969B1F270B6C6D00F7DED0 /* TaskListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8969B1E270B6C6D00F7DED0 /* TaskListViewController.swift */; };
 		A8969B25270B6C6D00F7DED0 /* CoreDataDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8969B23270B6C6D00F7DED0 /* CoreDataDemo.xcdatamodeld */; };
@@ -16,7 +15,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		270AE0A228F709D600AE368F /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		A8969B17270B6C6D00F7DED0 /* CoreDataDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8969B1A270B6C6D00F7DED0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8969B1E270B6C6D00F7DED0 /* TaskListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +56,6 @@
 			children = (
 				A8969B1A270B6C6D00F7DED0 /* AppDelegate.swift */,
 				A8969B1E270B6C6D00F7DED0 /* TaskListViewController.swift */,
-				270AE0A228F709D600AE368F /* TaskTableViewCell.swift */,
 				A8969B26270B6C7300F7DED0 /* Assets.xcassets */,
 				A8969B28270B6C7300F7DED0 /* LaunchScreen.storyboard */,
 				A8969B2B270B6C7300F7DED0 /* Info.plist */,
@@ -137,7 +134,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				270AE0A328F709D600AE368F /* TaskTableViewCell.swift in Sources */,
 				A8969B1F270B6C6D00F7DED0 /* TaskListViewController.swift in Sources */,
 				A8969B25270B6C6D00F7DED0 /* CoreDataDemo.xcdatamodeld in Sources */,
 				A8969B1B270B6C6D00F7DED0 /* AppDelegate.swift in Sources */,
