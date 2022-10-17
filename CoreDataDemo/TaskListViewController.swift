@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 protocol TaskViewControllerDelegate {
     func reloadData()
@@ -96,8 +95,9 @@ class TaskListViewController: UITableViewController {
     }
     
     private func save(_ taskName: String) {
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return }
-        guard let task = NSManagedObject(entity: entityDescription, insertInto: context) as? Task else { return }
+
+        guard let task = StorageManager.shared.newEntity(forEntityName: "Task", in: context) as? Task else {return}
+        
         task.title = taskName
         taskList.append(task)
         
@@ -141,8 +141,9 @@ extension TaskListViewController {
     func updateTask(name taskName: String, index: Int){
         
         context.delete(taskList[index])
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return }
-        guard let task = NSManagedObject(entity: entityDescription, insertInto: context) as? Task else { return }
+
+        guard let task = StorageManager.shared.newEntity(forEntityName: "Task", in: context) as? Task else {return}
+        
         task.title = taskName
         
         taskList[index].title = task.title

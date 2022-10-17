@@ -11,8 +11,17 @@ import CoreData
 class StorageManager {
     static let shared = StorageManager()
     
+    // MARK: - New Entity Task
+    func newEntity(forEntityName: String, in context: NSManagedObjectContext) -> Any? {
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: "Task", in: context) else {return ""}
+        guard let task = NSManagedObject(entity: entityDescription, insertInto: context) as? Task else { return ""}
+        return task
+        
+    }
+
+    
     // MARK: - Core Data stack
-    lazy var persistentContainer: NSPersistentContainer = {
+    var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "CoreDataDemo")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
