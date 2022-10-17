@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 protocol TaskViewControllerDelegate {
     func reloadData()
 }
@@ -89,7 +90,11 @@ class TaskListViewController: UITableViewController {
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         alert.addTextField { textField in
-            textField.placeholder = "New Task"
+            if indexOfTask == -1 {
+                textField.placeholder = "New Task"
+            } else {
+                textField.text = self.taskList[indexOfTask].title
+            }
         }
         present(alert, animated: true)
     }
