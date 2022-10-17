@@ -87,8 +87,6 @@ class TaskListViewController: UITableViewController {
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
         alert.addTextField { textField in
             if indexOfTask == -1 {
                 textField.placeholder = "New Task"
@@ -96,6 +94,8 @@ class TaskListViewController: UITableViewController {
                 textField.text = self.taskList[indexOfTask].title
             }
         }
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true)
     }
     
@@ -144,7 +144,7 @@ extension TaskListViewController {
 
 extension TaskListViewController {
     func updateTask(name taskName: String, index: Int){
-        
+        // не поняла, можно ли редактировать сущности в кор дате, поэтому сделала через удалить - добавить
         context.delete(taskList[index])
 
         guard let task = StorageManager.shared.newEntity(forEntityName: "Task", in: context) as? Task else {return}
