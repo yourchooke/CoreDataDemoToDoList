@@ -53,7 +53,7 @@ class TaskListViewController: UITableViewController {
     }
     
     @objc private func addNewTask() {
-        showAlert(with: "New Task", and: "What do you want to do?", and: -1)
+        showAlert(with: "New Task", and: "What do you want to do?", and: nil)
     }
     
     private func fetchData() {
@@ -76,22 +76,22 @@ class TaskListViewController: UITableViewController {
         }
     }
     
-    private func showAlert(with title: String, and message: String, and indexOfTask: Int) {
+    private func showAlert(with title: String, and message: String, and indexOfTask: Int? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
             guard let task = alert.textFields?.first?.text, !task.isEmpty else { return }
-            if indexOfTask == -1 {
-                self.save(task)
+            if let index = indexOfTask {
+                self.updateTask(name: task, index: index)
             } else {
-                self.updateTask(name: task, index: indexOfTask)
+                self.save(task)
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
         alert.addTextField { textField in
-            if indexOfTask == -1 {
-                textField.placeholder = "New Task"
+            if let index = indexOfTask {
+                textField.text = self.taskList[index].title
             } else {
-                textField.text = self.taskList[indexOfTask].title
+                textField.placeholder = "New Task"
             }
         }
         alert.addAction(saveAction)
