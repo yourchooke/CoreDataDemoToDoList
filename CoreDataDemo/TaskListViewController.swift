@@ -13,7 +13,7 @@ protocol TaskViewControllerDelegate {
 }
 
 class TaskListViewController: UITableViewController {
-    private let context = StorageManager.shared.persistentContainer.viewContext
+    private let context = StorageManager.shared.viewContext
     private let cellID = "task"
     private var taskList: [Task] = []
 
@@ -101,7 +101,7 @@ class TaskListViewController: UITableViewController {
     
     private func save(_ taskName: String) {
 
-        guard let task = StorageManager.shared.newEntity(forEntityName: "Task", in: context) as? Task else {return}
+        let task =  Task(context: context)
         
         task.title = taskName
         taskList.append(task)
@@ -147,7 +147,7 @@ extension TaskListViewController {
         // не поняла, можно ли редактировать сущности в кор дате, поэтому сделала через удалить - добавить
         context.delete(taskList[index])
 
-        guard let task = StorageManager.shared.newEntity(forEntityName: "Task", in: context) as? Task else {return}
+        let task = Task(context: context)
         
         task.title = taskName
         
