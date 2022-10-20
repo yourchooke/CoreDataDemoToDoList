@@ -40,4 +40,7 @@ class StorageManager {
         viewContext = persistentContainer.viewContext
     }
     
+    // MARK: -- Public methods
+    
+    // 
 }

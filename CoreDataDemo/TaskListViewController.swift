@@ -53,7 +53,7 @@ class TaskListViewController: UITableViewController {
     }
     
     @objc private func addNewTask() {
-        showAlert(with: "New Task", and: "What do you want to do?", and: nil)
+        showAlert()
     }
     
     private func fetchData() {
@@ -76,26 +76,20 @@ class TaskListViewController: UITableViewController {
         }
     }
     
-    private func showAlert(with title: String, and message: String, and indexOfTask: Int? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
-            guard let task = alert.textFields?.first?.text, !task.isEmpty else { return }
-            if let index = indexOfTask {
-                self.updateTask(name: task, index: index)
+    private func showAlert(task: Task? = nil, completion: (() -> Void)? = nil) {
+        let title = task != nil ? "Update Task" : "New Task"
+        let message = task != nil ? "What do you want to do?" : "What do you really want to do"
+        let alert = UIAlertController.createAlertController(withTitle: title, withMessage: message)
+        
+        alert.action(task: task) { taskName in
+            if let task = task, let completion = completion {
+                StorageManager.shared.edit(task, newName: taskName)
+                completion()
             } else {
-                self.save(task)
+                self.save(taskName: taskName)
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-        alert.addTextField { textField in
-            if let index = indexOfTask {
-                textField.text = self.taskList[index].title
-            } else {
-                textField.placeholder = "New Task"
-            }
-        }
-        alert.addAction(saveAction)
-        alert.addAction(cancelAction)
+        
         present(alert, animated: true)
     }
     
@@ -144,7 +138,6 @@ extension TaskListViewController {
 
 extension TaskListViewController {
     func updateTask(name taskName: String, index: Int){
-        // не поняла, можно ли редактировать сущности в кор дате, поэтому сделала через удалить - добавить
         context.delete(taskList[index])
 
         let task = Task(context: context)
@@ -176,6 +169,7 @@ extension TaskListViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         showAlert(with: "Update task", and: "What do you really want to do?", and: indexPath.row)
     }
 
