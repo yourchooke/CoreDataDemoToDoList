@@ -28,16 +28,6 @@ class StorageManager {
         return container
     }()
     
-    private func saveIfContextIsChanged() {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch let error {
-                print(error)
-            }
-        }
-    }
-    
     // MARK: - Core Data Saving support
     func saveContext() {   // It is public for Application will terminate
         let context = persistentContainer.viewContext
